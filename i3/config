@@ -1,0 +1,290 @@
+#   	 __    __  __ _  __ _  ____ 
+#		(  )  (  )(  ( \(  / )/ ___)
+#   	/ (_/\ )( /    / )  ( \___ \
+#   	\____/(__)\_)__)(__\_)(____/
+
+# default config file:
+# https://raw.githubusercontent.com/endeavouros-team/endeavouros-i3wm-setup/master/.config/i3/config
+
+# i3 documentation:
+# http://i3wm.org/docs/userguide.html
+
+# endeavouros i3 documentation:
+# https://github.com/endeavouros-team/endeavouros-i3wm-setup
+
+
+
+
+
+#		  ___  __   __ _  ____  __  ___ 
+#		 / __)/  \ (  ( \(  __)(  )/ __)
+#		( (__(  O )/    / ) _)  )(( (_ \
+#		 \___)\__/ \_)__)(__)  (__)\___/
+
+# font
+font pango: Noto Sans Regular 10
+
+# mod key
+set $mod Mod4
+
+
+
+
+
+#   	 _  _  __  __ _  ____   __   _  _ 
+#   	/ )( \(  )(  ( \(    \ /  \ / )( \
+#   	\ /\ / )( /    / ) D ((  O )\ /\ /
+#		(_/\_)(__)\_)__)(____/ \__/ (_/\_)
+
+# default tiling mode (default, stacking, tabbed)
+workspace_layout default
+
+# window borders
+new_window pixel 5
+
+# thin borders
+# hide_edge_borders both
+
+# gaps
+gaps inner 6
+gaps outer 3
+
+# drag floating windows
+floating_modifier $mod
+
+# set floating for apps
+for_window [class="Yad" instance="yad"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Pavucontrol" instance="pavucontrol"] floating enable
+for_window [class="Blueberry.py" instance="blueberry.py"] floating enable
+for_window [class="Bluetooth-sendto" instance="bluetooth-sendto"] floating enable
+for_window [class="Pamac-manager"] floating enable
+for_window [window_role="About"] floating enable
+
+# resize window
+mode "resize" {
+	bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+r mode "resize"
+
+# change focus
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+# move focused window
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# split in horizontal/vertical orientation
+bindsym $mod+h split h
+bindsym $mod+v split v
+
+# toggle fullscreen mode
+bindsym $mod+Shift+f fullscreen toggle
+
+# position of floating window
+for_window [class=".*"] move position center
+
+# change container layout (stacked, tabbed, toggle split, float)
+bindsym $mod+s layout stacking
+bindsym $mod+t layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+f floating toggle
+
+
+
+
+
+#   	 _  _   __  ____  __ _  ____  ____   __    ___  ____ 
+#   	/ )( \ /  \(  _ \(  / )/ ___)(  _ \ / _\  / __)(  __)
+#   	\ /\ /(  O ))   / )  ( \___ \ ) __//    \( (__  ) _) 
+#   	(_/\_) \__/(__\_)(__\_)(____/(__)  \_/\_/ \___)(____)
+
+# variables
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch/iterate between workspaces
+bindsym $mod+Tab workspace next
+bindsym $mod+Shift+Tab workspace prev
+
+# switch to workspace
+bindsym $mod+1    workspace  $ws1
+bindsym $mod+2    workspace  $ws2
+bindsym $mod+3    workspace  $ws3
+bindsym $mod+4    workspace  $ws4
+bindsym $mod+5    workspace  $ws5
+bindsym $mod+6    workspace  $ws6
+bindsym $mod+7    workspace  $ws7
+bindsym $mod+8    workspace  $ws8
+bindsym $mod+9    workspace  $ws9
+bindsym $mod+0    workspace  $ws10
+
+# move focused container to workspace
+bindsym $mod+Shift+1    move container to workspace  $ws1
+bindsym $mod+Shift+2    move container to workspace  $ws2
+bindsym $mod+Shift+3    move container to workspace  $ws3
+bindsym $mod+Shift+4    move container to workspace  $ws4
+bindsym $mod+Shift+5    move container to workspace  $ws5
+bindsym $mod+Shift+6    move container to workspace  $ws6
+bindsym $mod+Shift+7    move container to workspace  $ws7
+bindsym $mod+Shift+8    move container to workspace  $ws8
+bindsym $mod+Shift+9    move container to workspace  $ws9
+bindsym $mod+Shift+0    move container to workspace  $ws10
+
+
+
+
+
+#   	 __ _  ____  _  _  ____  __  __ _  ____  __  __ _   ___ 
+#   	(  / )(  __)( \/ )(  _ \(  )(  ( \(    \(  )(  ( \ / __)
+#   	 )  (  ) _)  )  /  ) _ ( )( /    / ) D ( )( /    /( (_ \
+#   	(__\_)(____)(__/  (____/(__)\_)__)(____/(__)\_)__) \___/
+
+# programs/apps
+bindsym $mod+Return exec xfce4-terminal
+bindsym Print exec flameshot gui
+
+# system bindings
+bindsym $mod+q kill
+bindsym $mod+p exec ~/.config/i3/scripts/powermenu
+bindsym $mod+l exec ~/.config/i3/scripts/blur-lock
+bindsym $mod+Shift+c reload
+bindsym $mod+Shift+r restart
+bindsym $mod+n exec ~/.config/i3/scripts/empty_workspace
+bindsym $mod+space exec rofi -modi drun -show drun -config ~/.config/rofi/rofidmenu.rasi
+bindsym $mod+w exec rofi -show window -config ~/.config/rofi/rofidmenu.rasi
+
+# multimedia keys
+bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_up
+bindsym XF86AudioLowerVolume exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_down
+bindsym XF86AudioMute exec --no-startup-id ~/.config/i3/scripts/volume_brightness.sh volume_mute
+bindsym XF86AudioPlay exec playerctl play
+bindsym XF86AudioPause exec playerctl pause
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+
+
+
+
+
+#		  __   _  _  ____  __   ____  ____  __   ____  ____ 
+#		 / _\ / )( \(_  _)/  \ / ___)(_  _)/ _\ (  _ \(_  _)
+#		/    \) \/ (  )( (  O )\___ \  )( /    \ )   /  )(  
+#		\_/\_/\____/ (__) \__/ (____/ (__)\_/\_/(__\_) (__) 
+
+# polkit
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+
+# picom
+# exec_always --no-startup-id picom -b
+exec_always --no-startup-id picom -b --config ~/.config/picom/picom.conf
+
+# desktop/xdg entry files
+exec --no-startup-id dex --autostart --environment i3
+#exec --no-startup-id dex -a -s /etc/xdg/autostart/:~/.config/autostart/
+
+# setup displays
+exec_always --no-startup-id xrandr -rate 144
+exec --no-startup-id ~/.screenlayout/monitor.sh
+
+# wallpaper
+set $wallpaper ~/Pictures/wallpapers/1.png
+exec_always --no-startup-id sleep 1 && feh --bg-fill $wallpaper
+
+# pywal
+exec_always --no-startup-id wal -i $wallpaper
+
+# desktop notifications
+#exec --no-startup-id /usr/bin/dunst --config ~/.config/dunst/dunstrc
+exec --no-startup-id /usr/bin/dunst
+
+# powersaving
+exec --no-startup-id xset s 480 dpms 600 600 600
+
+# autotiling script
+exec_always --no-startup-id autotiling
+
+# bluetooth
+#exec --no-startup-id blueberry-tray
+
+# networkmanager-applet
+#exec --no-startup-id nm-applet
+
+
+
+
+
+#   	   ___  __   __     __  ____ 
+#   	 / __)/  \ (  )   /   \(  _ \
+#   	( (__(  O )/ (_/\(  O ))   /
+#   	\___)\__/ \____/ \__/(__\_)
+
+# Define colors variables:
+set $darkbluetrans	#08052be6
+set $darkblue		#08052b
+set $lightblue		#5294e2
+set $urgentred		#e53935
+set $white			#ffffff
+set $black			#000000
+set $purple			#e345ff
+set $darkgrey		#383c4a
+set $grey			#b0b5bd
+set $mediumgrey		#8b8b8b
+set $yellowbrown	#e1b700
+
+# define colors for windows:
+#class		        		border			bground			text		indicator		child_border
+client.focused		    	$lightblue		$darkblue		$white		$mediumgrey		$mediumgrey
+client.unfocused	    	$darkblue		$darkblue		$grey		$darkgrey		$darkgrey
+client.focused_inactive		$darkblue		$darkblue		$grey		$black			$black
+client.urgent		    	$urgentred		$urgentred		$white		$yellowbrown	$yellowbrown
+
+
+
+
+
+# 		 ____   __   ____ 
+# 		(  _ \ / _\ (  _ \
+# 		 ) _ (/    \ )   /
+# 		(____/\_/\_/(__\_)
+
+# i3bar
+# bar {
+# 	font pango: Noto Sans Regular 10
+# 	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+# 	position bottom
+# 	tray_padding 5
+# 	strip_workspace_numbers yes
+# 	colors {
+# 		separator          $purple
+# 		background         $darkgrey
+# 		statusline         $white
+			
+# 		#               	border 			bg				txt				indicator
+# 		focused_workspace	$mediumgrey	   	$grey			$darkgrey		$purple
+# 		active_workspace	$lightblue      $mediumgrey		$darkgrey		$purple
+# 		inactive_workspace	$darkgrey   	$darkgrey		$grey			$purple
+# 		urgent_workspace	$urgentred	    $urgentred		$white			$purple
+# 	}
+# }
+
+# polybar
+exec_always --no-startup-id ~/.config/polybar/launch.sh
